@@ -1,0 +1,23 @@
+Zuweisung
+	variablen_name = "Dies ist ein String"
+		# Zuweisung erfolgt mit Zuweisungsoperator '='
+
+Zeichenkette (String)
+	str = "ABC123"
+		# Ein String wird erzeugt, in dem Zeichen in einfachen oder doppelten Anführungszeichen als Wert angegeben werden
+	
+	Zusammengesetzte Zeichenketten
+		tag = "Freitag"
+		str = "Heute ist " + tag
+			# das +-Zeichen verbindet zwei Strings
+
+Ganze Zahl (Integer,Fixnum)
+	zahl = 15
+		# Eine Zahl wird erzeugt, in dem Zahlen einfach hinter dem Zuweisungsoperator stehen
+
+Kommazahl (Float)
+	kzahl = 13.22
+		# Eine Kommazahl wird erzeugt, in dem diese mit einem Punkt getrennt hinter dem Zuweisungsoperator stehen
+
+
+		

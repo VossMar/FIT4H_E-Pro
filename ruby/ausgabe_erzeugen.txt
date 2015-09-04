@@ -1,0 +1,15 @@
+Ausgabe
+	puts 
+		# gibt eine variable, die ein String sein muss, in der Konsole aus
+		# puts "bla"
+		# puts variable
+		# zahl = 15
+		# puts zahl.to_s
+
+Zusammengesetzte Ausgabe
+	tag = "Freitag"
+	puts "Heute ist #{tag}, der #{Time.new}."
+		# Ausgeben eines Strings, der sich aus Text und dem Inhalt von Variablen zusammensetzt
+		# Am Anfang und Ende müssen doppelte Anführungszeichen stehen.
+		# Innerhalb des Konstruktes #{} kann jeder RUBY-Code ausgeführt werden. Das Ergebnis wird automatisch in ein String konvertiert.
+		
