@@ -1,6 +1,9 @@
 str = "Heute ist Freitag"
 puts str
 
+nz = "Hallo\n\tdu\n\tVogel"
+puts nz
+
 zahl = 15
 puts zahl
 	# puts konvertiert eine Zahl in einen String, besser ist aber eine expizierte Konvertierung (puts zahl.to_s)
