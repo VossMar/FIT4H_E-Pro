@@ -14,3 +14,8 @@ Konstruktor
  			@title = ptitle.capitalize
  			@rank = prank
  		end
+ 	# In diesem Fall wird bei einem Aufruf von "Movie.new('Turtels',3)" in die Variable "ptitle" der Wert "Turtles" gespeichert. Danach wird dieser Wert in die Instanzvariable "@title" eingetragen. Das erzeugte Objekt hat nun eine Eigenschaft "title".
+
+Instanzvariable
+	# Die Instanzvariable einer Klasse gilt in jeder Methode der Klasse. Während also "ptitle" nur innerhalb der Methode initialize gilt, kan die Inzstanzvariable "@title" auch in jeder anderen Methode der Klasse "Movie" verwendet werden.
+	Eine andere Bezeichnung für Inzstanzvariable ist Attribut oder Eigenschaft.
