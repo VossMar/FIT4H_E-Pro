@@ -4,6 +4,16 @@ class Movie
  		@rank = prank
 	end
 
+	# def title
+	# 	@title
+	# end
+	attr_reader :title
+
+	# def title=(ptitle)
+	# 	@title=ptitle
+	# end
+	attr_writer :title
+
 	def thumbs_up
 		@rank += 1
 		#@rank = @rank +1
@@ -20,9 +30,13 @@ class Movie
 
 end
 
+movie1 = Movie.new("NinjaTurtles")
 
+puts movie1.to_s
+movie1.thumbs_up
+puts movie1.to_s
+puts movie1.title
 
-obj_movie1 = Movie.new("NinjaTurtles")
-puts obj_movie1.to_s
-obj_movie1.thumbs_up
-puts obj_movie1.to_s
+movie1.title = "NinjaPurples"
+
+puts movie1

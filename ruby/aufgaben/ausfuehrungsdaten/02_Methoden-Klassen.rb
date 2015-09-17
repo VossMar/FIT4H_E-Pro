@@ -2,38 +2,38 @@
 # a. definieren Sie eine Methode say_hello mit dem Argument name. 
 #    Das Ergebnis des Aufrufs ist dann die Ausgabe: 'Ich bin Ludwig'
 
-def say_hello
-	puts "Ich bin Ludwig."
+def say_hello (name)
+	puts "Ich bin #{name}."
 end
-say_hello
+say_hello ('Ludwig')
 		puts "\n"
 
 # b. rufen Sie die Methode mit verschiedenen namen auf
-def say_hello
-	puts "Ich bin Ludwig."
-	puts "Ich bin Daniel."
-	puts "Ich bin Timoeoeoeoe."
+def say_hello (name)
+	puts "Ich bin #{name}"
 end
-say_hello
+say_hello ('Ludwig')
+say_hello ('Daniel')
+say_hello ('Timoeoe')
 		puts "\n"
 
 # c. puts soll nun aus der Methode entfernt werden
 def say_hello(name)
-	puts "Ich bin #{name}."
+	"Ich bin #{name}."
 end
 puts say_hello('Ludwig')
 
 # d. aendern sie die Methode, so dass sie einen Statndarparmameter health entgegennimmt. 
 #    Die Ausgabe lautet dann: 'Ich bin Ludwig mit einem Wert von 100'
 def say_hello(name,health=0)
-	puts "Ich bin #{name} und mir geht es zu #{health}% gut."
+	"Ich bin #{name} und mir geht es zu #{health}% gut."
 end
-puts say_hello('Marvin',60)
+puts say_hello('Marvin')
 
 # e. definieren Sie eine Methode time, die in der Methode say_hello aufgerufen 
 #    wird und die Ausgabe folgendermaßen ergaenzt: 'Ich bin Ludwig mit einem Wert von 100 um 18:25'
 def say_hello(name,health=0)
-	puts "Ich bin #{name} und mir geht es zu #{health}% gut um #{time} Uhr."
+	"Ich bin #{name} und mir geht es zu #{health}% gut um #{time} Uhr."
 end
 def time
 	Time.now.strftime("%H:%M")
@@ -45,18 +45,18 @@ puts say_hello('Marvin',55)
 # a. erstellen Sie eine Klasse mit der Bezeichnung Player
 class Player
 
-# c. erstellen Sie eine initialize - Methode, die die Parameter name und health hat 
-#    und aus diesen Werten die Instanzvariablen @name und @health initialisiert
-# e. setzen Sie fuer health einen Standardwert 100
-	def initialize(name,health=100)
-		@name = name
-		@health = health
- 	end
+	# c. erstellen Sie eine initialize - Methode, die die Parameter name und health hat 
+	#    und aus diesen Werten die Instanzvariablen @name und @health initialisiert
+	# e. setzen Sie fuer health einen Standardwert 100
+		def initialize(name,health=100)
+			@name = name
+			@health = health
+ 		end
 
-# d. updaten Sie das Objekt player1 und lassen sich das objekt anzeigen
- 	def hi
- 		puts "Ich heiße #{@name} und mir geht es zu #{@health}% gut."
- 	end
+	# d. updaten Sie das Objekt player1 und lassen sich das objekt anzeigen
+ 		def hi
+ 			puts "Ich heiße #{@name} und mir geht es zu #{@health}% gut."
+ 		end
 end
 
 # b. erstellen Sie ein Objekt player1 der Klasse
@@ -78,7 +78,7 @@ class Player1
  		puts "Ich heiße #{@name} und mir geht es zu #{@health}% gut."
  	end
 	def say_hello
-	puts "Name: #{@name} Leben: #{@health}% "
+		puts "Name: #{@name} Leben: #{@health}% "
 	end
 end
 obj_player1 = Player1.new('Marvin',70)
