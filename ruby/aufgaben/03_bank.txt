@@ -14,38 +14,3 @@ Ort:..................22159 Hamburg
 
 Legen Sie das Objekt obj an, rufen Sie die entsprechenden Get-Methoden für die Dateneingabe auf, erzeugen Sie die Kontrollausgabe.
 
-class Customer
-
-	def initialize (konu,nana ="")
-		@bank_account = konu
-		@lastname = nana
-	end
-
-	def set_street(vona)
-		@firstname= vona
-	end
-
-	def set_street(str)
-		@street = str
-	end
-
-	def set_street(ort)
-		@city = ort
-	end
-
-
-	def print_address
-		"Konto:................#{@bank_account}\n
-		Name:.................#{@firstname} #{@lastname}\n
-		Strasse:..............#{@street} 7\n
-		Ort:..................#{@city}\n"
-	end
-
-
-end
-
-customer1 = Customer.new(8888)
-customer2 = Customer.new(8392,Voss)
-
-customer1.print_address
-customer2.print_address

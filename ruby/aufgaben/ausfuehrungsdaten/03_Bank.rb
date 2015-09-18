@@ -1,9 +1,10 @@
 class Customer
 
-	def initialize (konu,nana = " ")
+	def initialize (konu,nana ="")
 		@bank_account = konu
 		@lastname = nana
 	end
+
 
 	def set_first(vona = " ")
 		@firstname = vona
