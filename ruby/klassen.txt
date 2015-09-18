@@ -26,8 +26,22 @@ Eigneschaften
 	die genauso wie die Eigenschaft heißt. 
 	Bsp.:	Instanzvariable: @title
 				Eigenschaft: title 
-				Reader-Methode:	def title
-													@title
-												end
+				Reader-Methode (Getter-Methode):
+					def title
+						@title
+					end
+				Kurzform (Shortcut): attr_reader :title
 	Nun kann ich mit dem Objekt auf die Eigenschaft title zugreifen: 
 		object1.title
+
+Soll von außen auf die Eigenschaft title zugegriffen werden, dann ist ein WRITER nötig.
+				Writer-Methode(Setter-Methode):
+					def title=(parameter)
+						@title = parameter
+					end
+	Nun kann für diese Eigenschaft ein neuer Wert zugewiesen Werden.
+		object1.title = "Neuer Wert"
+
+Kurz-Kurz-Form: wen sowohl ein Reader als auch ein Writer benötigt wird:
+		attr_accessor :title
+
