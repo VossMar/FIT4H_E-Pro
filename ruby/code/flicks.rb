@@ -1,3 +1,20 @@
+class Playlist
+
+	def initialize (name)
+		@name = name
+		@movies = []
+	end
+
+	def add_movie(movie)
+		@movies << movie
+	end
+
+	def to_s
+		puts @movies.size.to_s
+	end
+
+end
+
 class Movie
 	#attr_reader :title
 	#attr_writer :title
@@ -37,3 +54,6 @@ movies.each do |movie|
 	puts movie
 end
 
+pl = Playlist.new("Horror")
+pl.add_movie(movie1)
+pl

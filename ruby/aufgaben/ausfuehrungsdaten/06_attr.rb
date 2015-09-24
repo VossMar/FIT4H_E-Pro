@@ -1,6 +1,6 @@
 class Player
-	attr_accessor :health
-	attr_reader :name
+	attr_reader :health
+	attr_accessor :name
 
 	def initialize (name,health=100)
 		@name = name
@@ -39,6 +39,10 @@ player1 = Player.new("Marvin",90)
 player2 = Player.new("Hans")
 
 puts player1.health
+puts player1.name
+player1.name = "Gaby"
+puts player1.name
+
 puts player1.score
 puts player1
 
