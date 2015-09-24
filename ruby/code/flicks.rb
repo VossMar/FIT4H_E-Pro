@@ -5,6 +5,13 @@ class Playlist
 		@movies = []
 	end
 
+	def play
+		puts "#{@name}'s PLAYLIST"
+		@movies.each do |movie|
+			puts movie
+		end
+	end
+
 	def add_movie(movie)
 		@movies << movie
 	end
@@ -54,6 +61,7 @@ movies.each do |movie|
 	puts movie
 end
 
-pl = Playlist.new("Horror")
+pl = Playlist.new("Theo")
 pl.add_movie(movie1)
-pl
+pl.add_movie(movie2)
+pl.play
