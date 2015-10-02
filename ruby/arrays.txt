@@ -15,7 +15,7 @@ Methoden:
 	variable.size 						#gibt die Anzahl der elemente aus
 	variable.pop							#entfernt das letzte Element
 	variable.empty?						#Array leer?
-	variable.invlude?('zwei')	#Element enthalten?
+	variable.include?('zwei')	#Element enthalten?
 
 Ausgabe:
 	variable[0] 	#Der erste Wert wird ausgegeben
