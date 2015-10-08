@@ -190,10 +190,13 @@ a. Bilde ein Array mit den Worten: Pflaume, Bauschaum, Auster
 
 
 b. Alle Elemente, die den String 'aus' enthalten sollen ausgegeben werden.
-puts einArray.keep_if{ |v| v =~ /[Aa]us/ } 
 	
 	einArray=%w(Pflaume Bauschaum Auster)
 	einArray.each {|w| puts w.include?(aus) ? w :""}
+
+	einArray.each {|w| puts w.include?(aus) ? w :""}
+
+
 
 
 c. erzeugen eine Ausgabe nach der Länge der Worte von klein nach groß
