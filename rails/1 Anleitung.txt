@@ -1,0 +1,17 @@
+Ruby on Rails ist ein Entwicklungs-Rahmen für Webanwendungen basierend auf Ruby.
+Es soll die Programmierung vereinfachen, indem es die Standartbedingungen einbindet.
+Für eine Funktion wird weniger geschriebener Code gebraucht, also in anderen Sprachen.
+Rails hat 2 Grundlegende Vorsätze:
+	DRY (Dont Repeat Yourself)
+		Keine Codewiderholungen, sollten mit Verweisen realisiert werden
+	CoC (Convention over Configuration)
+		Vereinbarungen gelten vor Hardwarekonfigurationen.
+
+Erstellung eines Rails Projektes
+
+rails new Kiki
+	Erstellt eine Railsanwendung mit dem Namen "Kiki" im aktuellen Ordner
+cd Kiki
+	wechseln in den Ordner der Anwendung
+
+		
