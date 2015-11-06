@@ -1,0 +1,10 @@
+<h1>Schuul!!!!!!!!!!!!!</h1>
+<h2><%= "lising generated at: #{Time.now}" %></h2>
+<%= "<h2>lising generated at: #{Time.now}</h2>".html_safe %>
+<p>
+	<ul>
+		<% @events.each do |event| %>
+			<li><%= event %></li>
+		<% end %>
+	<ul>
+</p>
