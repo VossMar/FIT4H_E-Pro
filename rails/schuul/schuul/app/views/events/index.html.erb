@@ -1,10 +1,20 @@
-<h1>Schuul!!!!!!!!!!!!!</h1>
-<h2><%= "lising generated at: #{Time.now}" %></h2>
-<%= "<h2>lising generated at: #{Time.now}</h2>".html_safe %>
-<p>
-	<ul>
-		<% @events.each do |event| %>
-			<li><%= event %></li>
-		<% end %>
-	<ul>
-</p>
+<h1>Events</h1>
+<p>Zeige fogende <%= @events.size %> Events</p>
+	<table width ="100%">
+			<tr>
+				<th>Name</th>
+				<th>Ort</th>
+				<th>Preis</th>
+				<th>Wann</th>
+				<th>Beschreibung</th>
+			</tr>
+			<% @events.each do |event| %>
+			<tr>
+					<td><%= event.name %></td>
+					<td><%= event.location %></td>
+					<td><%= format_price(event) %></td>
+					<td><%= event.start_at %></td>
+					<td><%= truncate(event.description) %></td>
+			</tr>
+			<% end %>
+		</table>

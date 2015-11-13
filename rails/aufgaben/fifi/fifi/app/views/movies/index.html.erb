@@ -1,6 +1,21 @@
 <h1>Movies</h1>
-	<ul>
-		<li>Iron Man</li>
-		<li>Superman</li>
-		<li>Spider-Man</li>
-	</ul>
+	
+		<table>
+			<tr>
+				<th>Title</th>
+				<th>Rating</th>
+				<th>gesch.Umsatz</th>
+				<th>Beschreibung</th>
+				<th>Erscheinungsdatum</th>
+			</tr>
+			<% @movies.each do |mov| %>
+			<tr>
+				<td><%= mov.title %></td>
+				<td><%= mov.rating %></td>
+				<td><%= number_to_currency(mov.total_gross, unit: "€") %></td>
+				<td><%= mov.desctription %></td>
+				<td><%= mov.release_on %></td>
+			</tr>
+			<% end %>
+		</table>
+

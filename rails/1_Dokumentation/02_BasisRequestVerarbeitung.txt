@@ -19,4 +19,5 @@ Was geschieht?
 Die Endung erb der Html-Datei sorgt dafür, dass der Ruby-Parser nach Ruby-Code sucht und diesen ersetzt bevor der Server den Response zum Browser sendet.
 Der Ruby-Parser sucht dabei nach dem Tag: <%= =>
 (<%= Time.now %>)
+(das =-Zeichen im HTML-Text bei Aufruf eines Ruby Codes sthet für ein "echo")
 
