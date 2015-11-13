@@ -1,0 +1,14 @@
+Ein Rails-Prinzip ist es, auf der Darstellungsebene möglichst wenig Ruby-Code zu verwenden.
+Dafür stellt Rails den View-Helper als Instrument zur Verfügung.
+Es gibt einige Standardhelper, z.B.: 
+																			truncate						-	schneidet einen String ab
+																			content_tag 				-	erzeugt einen HTML-Tag
+																			number_to_currency	-	formatiert eine Zahl in Währung
+Es gibt auch die Möglichkeit eigene Helper zu scheiben.
+Bsp:
+	a. Aufruf im view
+		<td><%= format_price(event) %></td>
+	b. Definition im app/helpers/application_helper.rb
+		def format_price(event)
+			....
+		end
