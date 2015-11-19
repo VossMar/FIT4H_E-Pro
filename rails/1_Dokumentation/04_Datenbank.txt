@@ -17,6 +17,7 @@ b.
 	e.save
 Alternativ (beides gleichzeitig)
 	Event.create(name: "blub",...)
+	Event.create([{name: "blub",...},{name: "blub2",...},{name: "blub3",...}])
 
 BEFEHLE
 Suchen und finden

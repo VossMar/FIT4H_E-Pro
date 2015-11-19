@@ -7,4 +7,7 @@ module ApplicationHelper
 		 number_to_currency(event.price, unit: "€")	
 		end
 	end
+	def absch(event)
+		truncate(event.description, omission: "")
+	end
 end

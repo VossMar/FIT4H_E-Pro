@@ -1,4 +1,4 @@
-Erstellen Sie ein neues Projekt : fifi
+Erstellen Sie ein neues Projekt : flix
 
 Erstellen Sie einen Controller mit der Bezeichnung movies
 

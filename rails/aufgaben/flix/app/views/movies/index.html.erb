@@ -1,0 +1,27 @@
+<h1>Es <%= ein_mehrzahl %> vorhanden.</h1>
+<p><%= link_to "Neuen Film anlegen", new_movie_path %></p>
+
+<table width ="100%">
+	<tr>
+		<th>Titel</th>
+		<th>Rating</th>
+		<th>Umsatz</th>
+		<th>Release</th>
+		<th>Beschreibung</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @movies.each do |movie| %>
+	<tr>
+		<td><%= movie.titel %></td>
+		<td><%= movie.rating %></td>
+		<td><%= currenc(movie) %></td>
+		<td><%= time_ago_in_words(movie.release) %></td>
+		<td><%= sinpluanz(movie) %><%= link_to "...", movie_path(movie.id) %></td>
+		<td><%= link_to "Show", movie_path(movie.id) %></td>
+		<td><%= link_to "Edit", edit_movie_path(movie.id) %></td>
+		<td><%= link_to "Delete", movie_path(movie.id),method: :delete, data: {confirm: "Wirklich?!"} %></td>
+	</tr>
+	<% end %>
+</table>

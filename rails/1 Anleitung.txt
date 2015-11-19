@@ -52,7 +52,7 @@ Zum Anzeigen der Index-Seite im Browser, muss in config/routes.rb eine neue Rout
 	Die Route "root 'welcome#index'" vermittelt Rails, dass Anfragen an das Rootverzeichnis (localhost:3000), zum index des welcome controller's weitergeleitet werden. "get 'welcome/index" verweist auf den Pfad der anzuzeigenden Datei. 
 
 recource
-	Ist ein Begriff, der für die Sammlung einzelner Objekte/Items dient. Man kann Diese erstellen, lesen, updaten und löschen (CRAD create, read, update,destroy).
+	Ist ein Begriff, der für die Sammlung einzelner Objekte/Items dient. Man kann diese erstellen, lesen, updaten und löschen (CRAD create, read, update,destroy).
 	Man muss ḿit der recources-Methode articles in der config/routes.rb hinzufügen
 	"resources :articles"
 

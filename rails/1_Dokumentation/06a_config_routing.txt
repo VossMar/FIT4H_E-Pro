@@ -1,0 +1,19 @@
+Das Routing wird von Rails mit der Datei routes.rb im Verzeichnis config geregelt.
+
+Es ist möglich jeden einzelnen Pfad zu benennen.
+	get 'eventes/:id' => 'eventes#show'
+	#Wenn es einen Browseraufruf: "server/eventes/5" gibt, dann gehe in den eventes-Controller und doert in die show-action.
+
+Wenn man dieses Vorgehen wählt, muss man aber jede einzelne route angeben.
+Komfortabler ist es Rails eine Resource bilden zu lassen. Dies geschieht mit dem Befehl:
+	resources :eventes
+
+Nun stehen alle Standartaktionen dieses Controllers zur Verfügung.
+
+Im Hintergrund erstellt Rails nun Methoden, die eine Pfadangabe generieren.
+	Bsp.: event_path(5) 
+		#erstellt den Html-Code:	<a href="/events/5"></a>
+		
+Mit dem Consolenbefehl:
+		rake routes
+	kann man sich alle Routen anzeigen lassen.

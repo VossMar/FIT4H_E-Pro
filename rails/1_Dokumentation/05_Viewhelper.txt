@@ -12,3 +12,7 @@ Bsp:
 		def format_price(event)
 			....
 		end
+LINK_TO
+Die Verlinkung wird in Rails über den link_to -Helper realisiert.
+	link_to "Alle anzeigen", eventes_path
+		#produziert den Html-Code <a href="/events">Alle anzeigen</a>

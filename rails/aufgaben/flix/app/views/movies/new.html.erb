@@ -1,0 +1,28 @@
+<h1>Neuen Datensatz anlegen</h1>
+<!--<%= render "form" %>-->
+<%= form_for(@movie) do |m| %>
+	<p>
+	<%= m.label :titel %><br>
+	<%= m.text_field :titel %>
+	</p>
+	<p>
+	<%= m.label :description %><br>
+	<%= m.text_area :description %>
+	</p>
+	<p>
+	<%= m.label :total_gross %><br>
+	<%= m.number_field :total_gross %>
+	</p>
+	<p>
+	<%= m.label :release %><br>
+	<%= m.datetime_select :release %>
+	</p>
+	<p>
+	<%= m.label :rating %><br>
+	<%= m.text_field :rating %>
+	</p>
+	<p>
+	<%= m.submit %>
+	</p>
+
+<% end %>
