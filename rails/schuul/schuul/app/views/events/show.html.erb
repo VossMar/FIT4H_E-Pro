@@ -1,15 +1,41 @@
-
 <h1><%= @event.name %></h1>
 
-<p><%= @event.description %></p>
+<div class="panel">
+	<%= @event.description %>
+</div>
 
-<h3>Wann</h3>
-<p><%= @event.start_at %></p>
+<div class="panel">
+	<div class="row">
+		<div class="medium-2 columns">
+			Wann
+		</div>
+		<div class="medium-10 columns">
+			<%= @event.start_at %>
+		</div>
+	</div>
 
-<h3>Wo</h3>
-<p><%= @event.location %></p>
+	<div class="row">
+		<div class="medium-2 columns">
+			Wo
+		</div>
+		<div class="medium-10 columns">
+			<%= @event.location %>
+		</div>
+	</div>
 
-<h3>Preis</h3>
-<p><%= format_price(@event) %></p>
+	<div class="row">
+		<div class="medium-2 columns">
+			Preis
+		</div>
+		<div class="medium-10 columns">
+			<%= format_price(@event) %>
+		</div>
+	</div>
 
-<p><%= link_to "Back", events_path %></p>
+	<div class="row">
+		<div class="medium-2 columns"></div>
+		<div class="medium-10 columns">
+			<%= link_to "Back", events_path %>
+		</div>
+	</div>
+</div>
