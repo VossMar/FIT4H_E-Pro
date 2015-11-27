@@ -1,7 +1,14 @@
 <h1><%= @event.name %></h1>
 
 <div class="panel">
-	<%= @event.description %>
+	<div class="row">
+		<div class="medium-3 columns">
+			<%= image_for(@event) %>
+		</div>
+		<div class="medium-9 columns">
+		<%= @event.description %>
+		</div>
+	</div>
 </div>
 
 <div class="panel">
@@ -29,6 +36,15 @@
 		</div>
 		<div class="medium-10 columns">
 			<%= format_price(@event) %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			Gesamtplätze
+		</div>
+		<div class="medium-10 columns">
+			<%= @event.capacity %>
 		</div>
 	</div>
 
