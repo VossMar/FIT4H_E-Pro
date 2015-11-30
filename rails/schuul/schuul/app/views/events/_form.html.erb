@@ -1,6 +1,16 @@
 
 <%= form_for(@event) do |f| %>
 
+	<% if @event.errors.any? %>
+		<div class="panel">
+			<ul>
+				<% @event.errors.full_messages.each do |err| %>
+					<li><%= err %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
 	<div class="row">
 		<div class="medium-2 columns">
 				<%= f.label :name %>
@@ -16,6 +26,15 @@
 		</div>
 		<div class="medium-10 columns">
 				<%= f.text_area :description %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+				<%= f.label :image_file%>
+		</div>
+		<div class="medium-10 columns">
+				<%= f.text_field :image_file, placeholder: "Gif,jpg,png Dateiname" %>
 		</div>
 	</div>
 
@@ -45,6 +64,16 @@
 				<%= f.datetime_select :start_at %>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+				<%= f.label :capacity%>
+		</div>
+		<div class="medium-10 columns">
+				<%= f.text_field :capacity %>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="medium-2 columns"><%= f.submit %></div>
 		<div class="medium-10 columns"></div>
