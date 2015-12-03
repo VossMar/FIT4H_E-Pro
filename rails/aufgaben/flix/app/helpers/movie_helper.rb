@@ -16,6 +16,13 @@ module MovieHelper
 			end
 		end
 
+		def durati(movie)
+			if movie.dur?
+			else
+				movie.duration.to_formatted_s(:time)
+			end
+		end
+
 		def sinpluanz(movie)
 			truncate(movie.description, length: 30, seperator: "", omission: "")
 		end

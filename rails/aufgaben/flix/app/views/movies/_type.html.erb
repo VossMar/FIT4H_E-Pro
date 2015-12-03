@@ -1,1 +1,11 @@
-<%= get 'movies/:id' ? "Eins" : "Alle" %>
+<% if current_page?('/movies') || current_page?('/') %>
+		<% @movies.each do |movie| %>
+			<% @descr = false %>
+			<% @zerot = movie %>
+			<%= render "fill" %>
+		<% end %>
+<% else %>
+		<% @zerot = @movie %>
+			<% @descr = true %>
+			<%= render "fill" %>
+<% end %> 
