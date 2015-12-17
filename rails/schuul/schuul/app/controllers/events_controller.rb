@@ -4,6 +4,10 @@ class EventsController < ApplicationController
 		@events = Event.upcoming
 	end
 
+	def showall
+		@events = Event.all
+	end
+
 	def show
 		@event = Event.find(params[:id])
 	end
@@ -16,6 +20,7 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.new(event_params)
 		if @event.save
+			flash[:notice] = "Entry created!"
 			redirect_to event_path(@event.id)
 		else
 			render "new"
@@ -29,15 +34,19 @@ class EventsController < ApplicationController
 
 	def update
 		@event = Event.find(params[:id])
-		@event.update(event_params)
-		redirect_to event_path(@event.id)
+		if @event.update(event_params)
+			flash[:notice] = "Data update is done!"
+			redirect_to event_path(@event.id)
+		else
+			render "edit"
+		end
 	end
 
 
 	def destroy
 		@event = Event.find(params[:id])
 		@event.destroy
-
+		flash[:notice] = "Entry deleted!"
 		redirect_to events_path
 	end
 

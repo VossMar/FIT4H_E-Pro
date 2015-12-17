@@ -1,0 +1,31 @@
+<h1>Events</h1>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<p><%= link_to "Neuen Event erstellen", new_event_path %></p>
+<p>Zeige fogende <%= @events.size %> Events</p>
+	<table width ="100%">
+			<tr>
+				<th>Name</th>
+				<th>Ort</th>
+				<th>Preis</th>
+				<th>Wann</th>
+				<th>Beschreibung</th>
+				<th>Show</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			<% @events.each do |event| %>
+			<tr>
+					<td><%= event.name %></td>
+					<td><%= event.location %></td>
+					<td><%= format_price(event) %></td>
+					<td><%= event.start_at %></td>
+					<td><%= absch(event) %><%= link_to "...", event_path(event.id) %></td>
+					<td><%= link_to "Show", event_path(event.id) %></td>
+					<td><%= link_to "Edit", edit_event_path(event.id) %></td>
+					<td><%= link_to "Delete", event_path(event.id), method: :delete, data: {confirm: "Echt jetzt?"} %></td>
+					
+			</tr>
+			<% end %>
+	</table>
