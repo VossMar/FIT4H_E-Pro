@@ -1,11 +1,4 @@
-Aufgaben für Donnerstag und Freitag, 3. und 4. Dezember
-Im Fach Konfigurieren und Administrieren sollen Sie soweit kommen, dass Sie am 11.12. die Fragen von Netacad beantworten können. Dies zählt als eine Klassenarbeit.
-Im Fach Entwickeln und Programmieren kommt es darauf an, dass sich die Klasse einen gemeinsamen Stand erarbeitet; also vor allem, dass die Schüler mit geringen Programmierfähigkeiten zur Gruppe aufschließen. 
-Ich möchte in der letzten Woche vor den Ferien in EuP eine Klassenarbeit schreiben, die in einer praktischen Aufgabe den bisherigen Stand spiegelt.
-Hilfreich ist hier:
-a. vermeiden Sie Copy and Paste. Schreiben Sie den Code Zeile für Zeile
-b. wiederholen Sie die Aufgaben aus dem Projekt solange, bis Ihnen das MVC-Prinzip selbstverständlich geworden ist. Fangen Sie immer wieder von vorne an. Das Startprojekt: http://guides.rubyonrails.org/getting_started.html ist ebenfalls gut geeignet. Die dritte App 'Fundraising' wiederholt unsere Vorgehensweise.
-c. Wenn noch Zeit bleibt, dann machen Sie für Ihre Hausarbeit ein erstes Inhaltsverzeichnis. Sie sollten in den Weihnachtsferien mit Ihrer Hausarbeit ernsthaft beginnen.
+
 
 EuP: Eine dritte Applikation
 Start creating a fundraising app. It can be used to raise funds for start-up projects, community projects, personal projects, or the like. For inspiration, check out Kickstarter, Pledgie, gofundme, or indiegogo. 

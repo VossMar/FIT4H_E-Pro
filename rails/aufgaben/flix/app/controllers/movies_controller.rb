@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
 	def update
 		@movie = Movie.find(params[:id])
 		if @movie.update(params_needed)
-			flash[:notice] = "Entry created!"
+			flash[:notice] = "Entry updated!"
 			redirect_to movie_path(@movie.id)
 		else
 			render "new"
