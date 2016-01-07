@@ -1,0 +1,10 @@
+<% if obj_starwars.errors.any? %>
+		<div class="panel">
+			<ul>
+				<% obj_starwars.errors.full_messages.each do |err| %>
+					<li><%= err %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	

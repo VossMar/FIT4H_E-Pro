@@ -1,0 +1,23 @@
+Aufruf im webbrowser:
+	http://localhost:300/events
+	#Fehlermeldung Routing-Error wird erzeugt (er weiß nicht, wo er hin soll)
+
+Was geschieht?
+	Der Server bekommt eine Get-Anfrage mit einer Pfadangabe: events
+
+1. Server schaut in der config/routes.rb ob dieser Pfad existiert und wie dier Verarbeitung weitergeht.
+	deshalb einfügen:
+		get "events" => "events#index"
+
+2. Server wird zu einem Controller mit dem Namen EventsController geschickt.
+
+3. Dort muss die Action index vorhanden sein
+
+4. Der Server arbeitet die Befehle in der Index Action ab und gibt die Informationen an die View-Ebene weiter.
+	Dazu muss es einen Unterordner im app/views-Ordner geben, der genauso heißt, wie der Controller
+	und es muss eine Datei geben, die genauso heißt wie die Action.
+Die Endung erb der Html-Datei sorgt dafür, dass der Ruby-Parser nach Ruby-Code sucht und diesen ersetzt bevor der Server den Response zum Browser sendet.
+Der Ruby-Parser sucht dabei nach dem Tag: <%= =>
+(<%= Time.now %>)
+(das =-Zeichen im HTML-Text bei Aufruf eines Ruby Codes sthet für ein "echo")
+

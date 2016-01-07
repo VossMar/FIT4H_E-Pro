@@ -1,0 +1,5 @@
+1. Consolenhilfe
+
+ri String.center
+	# ruft den Ruby-helper, der bei der Instalation mitinstalliert wird, auf und beschreibt die angefragte Methode 
+	# Syntax: ri Klassennamen.Methodennamen auf der LinuxKonsole
