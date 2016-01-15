@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :users
-  resources :users
+  get 'signout' => 'sessions#destroy'
+
+  resources :sessions
   resources :users
   root 'movies#index'
   resources :movies do

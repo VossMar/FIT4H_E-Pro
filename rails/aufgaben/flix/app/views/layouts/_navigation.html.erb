@@ -1,0 +1,26 @@
+<%# navigation styled for Zurb Foundation 5 %>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name"></li>
+    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+  </ul>
+  <div class="top-bar-section">
+    <ul>
+    	<li><%= link_to 'Home', root_path, class: "button" %></li>
+      <li><%= link_to 'User', users_path, class: "button" %></li>
+    </ul>
+
+    <ul>
+    	<div class="right">
+        <% if current_user %>
+          <li><%= link_to current_user.name, edit_user_path(current_user.id) %></li>
+          <li><%= link_to "Logout", signout_path %></li>
+        <% else %>
+        	<li><%= link_to "Account neu", new_user_path %></li>
+  				<li><%= link_to "Login", new_session_path, class: "button" %></li>
+			 <% end %>
+      </div>
+    </ul>
+
+  </div>
+</nav>
