@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  
   root "events#index"
+
+  get 'signup' => 'users#new'
+  get 'signin' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
+
+  resources :users
+  resources :sessions
+
   resources :events do
     resources :registrations
     collection do
