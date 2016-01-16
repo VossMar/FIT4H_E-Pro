@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def require_signin
+  	unless current_user
+  		redirect_to new_session_url, alert: "Anmeldung benötigt!"
+  	end
+  end
+  helper_method :require_signin
+
   
 
 end
