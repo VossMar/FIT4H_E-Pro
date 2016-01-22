@@ -51,7 +51,9 @@
 	<div class="row">
 		<div class="medium-2 columns"></div>
 		<div class="medium-10 columns">
-			<%= link_to "Back", events_path %>
+			<%= link_to "Registrierungen", event_registrations_path(@event.id), :class => "button mid-btn" %>
+			<%= link_to "Anmelden", new_event_registration_path(@event.id), :class => "button mid-btn" %><br/>
+			<%= link_to "Back", events_path, :class => "button big-btn" %><br/>
 		</div>
 	</div>
 </div>

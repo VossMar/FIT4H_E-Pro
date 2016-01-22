@@ -1,0 +1,31 @@
+<h1>Neu bewerten<h1>
+
+<%= form_for([@movie, @review]) do |r| %>
+
+
+<p>
+<%= r.label  :name %><br>
+<%= r.text_field :name %>
+</p>
+
+<p>
+Bewertung<br>
+<%= r.radio_button :stars, "1" %>
+<%= r.label :stars_1, "1 Stern" %>
+<%= r.radio_button :stars, "2" %>
+<%= r.label :stars_2, "2 Sterne" %>
+<%= r.radio_button :stars, "3" %>
+<%= r.label :stars_3, "3 Sterne" %>
+<%= r.radio_button :stars, "4" %>
+<%= r.label :stars_4, "4 Sterne" %>
+<%= r.radio_button :stars, "5" %>
+<%= r.label :stars_5, "5 Sterne" %>
+</p>
+
+<p>
+<%= r.label :comment %><br>
+<%= r.text_area :comment %>
+</p>
+
+<%= r.submit %>
+<% end %>

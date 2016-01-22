@@ -1,0 +1,17 @@
+<h1>Users</h1>
+<table width="100%">
+	<tr>
+		<th>Benutzername</th>
+		<th>Email-Adresse</th>
+	</tr>
+
+<% @users.each do |u| %>
+	<tr>
+		<td><%= u.name %></td>
+		<td><%= u.email %></td>
+		<td><%= link_to "Anzeigen", u %></td>
+		<td><%= link_to "Bearbeiten", edit_user_path(u) %></td>
+		<td><%= link_to "Löschen", u, method: :delete %></td>
+	</tr>
+<% end %>
+</table>

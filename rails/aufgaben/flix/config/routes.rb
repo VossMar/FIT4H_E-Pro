@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  
+  get 'signout' => 'sessions#destroy'
+
+  resources :sessions
+  resources :users
   root 'movies#index'
-  resources :movies
+  resources :movies do
+    resources :reviews
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
