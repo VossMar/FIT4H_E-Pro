@@ -1,0 +1,17 @@
+<%= form_for (@visitor) do |v| %>
+
+	<%= v.label :name %>
+	<%= v.text_field :name %>
+
+	<%= v.label :username %>
+	<%= v.text_field :username %>
+
+	<%= v.label :password %>
+	<%= v.password_field :password %>
+
+	<%= v.label :password_confirmation %>
+	<%= v.password_field :password_confirmation %>
+
+	<%= v.submit class: "button" %>
+
+<% end %>
