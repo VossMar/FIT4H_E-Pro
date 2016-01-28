@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources 'sessions'
   resources 'visitors'
 
+  get 'logout' => "sessions#destroy"
+
   resources :projects do
   	resources :tasks
 		collection do

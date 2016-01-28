@@ -54,7 +54,10 @@ class VisitorsController < ApplicationController
 		end
 
 		def require_correct_vis
-			
+			@visitor = Visitor.find(params[:id])
+			unless @visitor == current_vis
+					redirect_to root_url, alert:"Keine Berechtigung!"			
+			end
 		end
 
 end

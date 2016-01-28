@@ -1,9 +1,0 @@
-<h1>Der Film</h1>
-
-
-<%= render "type" %>
-
-
-<p><%= link_to "Reviews", movie_reviews_path(@movie.id), type: "button", class: "button" %>
-<%= link_to "Review anlegen", new_movie_review_path(@movie.id), type: "button", class: "button" %>
-<%= link_to "Back", movies_path, type: "button", class: "button" %></p>

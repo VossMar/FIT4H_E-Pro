@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+	 before_action :require_admin, except: [:index, :show, :showall]
 	
 	def index
 		@projects = Project.upcoming

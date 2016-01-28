@@ -1,5 +1,0 @@
-Aufgabe:
-
-Erstellen Sie die Möglichkeit über den Aufruf: localhost/movies/1 eine Detailansicht des Movies zu sehen.
-
-Verlinken Sie die APP: von der Index Seite zur Show und zurück.
