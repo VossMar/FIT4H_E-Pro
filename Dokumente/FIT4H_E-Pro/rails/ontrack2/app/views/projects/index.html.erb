@@ -1,0 +1,25 @@
+<h1>Alle Projekte</h1>
+
+<%= link_to "Neues Projekt anlegen", new_project_path %>
+
+<table style=" width:100% ; border: 1px solid blue ;">
+	<tr>
+		<th> Titel </th>
+		<th> Beschreibung </th>
+		<th> Beginn </th>
+	</tr>
+
+<% @projects.each do |p| %>
+
+	<tr>
+		<td><%= p.title %></td>
+		<td><%= p.description %></td>
+		<td><%= p.start_date %></td>
+		<td><%= link_to "Anzeigen", project_path(p.id)  %></td>
+		<td><%= link_to "Bearbeiten", edit_project_path(p.id)  %></td>
+	</tr>
+
+<% end %>
+
+
+</table>

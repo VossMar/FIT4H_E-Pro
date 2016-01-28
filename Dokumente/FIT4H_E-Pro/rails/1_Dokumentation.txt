@@ -166,6 +166,12 @@ Rails-Dokumentation
 			e.destroy
 
 
+	Hilfen
+	In der seeds.rb können Konsolenbefehle eingetragen werden, die bei bei Einbeziehung der Datei automatisch ausgeführt werden.
+	Ausführung:
+		rake db:seed 			-	führt die Befehle in der Datei aus
+		rake db:setup 		-	Löscht die Tabellen und erstellt diese neu mit Einbeziehung der seeds.rb
+
 
 
 
@@ -333,6 +339,11 @@ Rails-Dokumentation
 
 	Verknüpfung von Tabellen:
 		Tabellen können über eine Verknüpfung von PrimaryKey (1.Tabelle) zum ForeignKey (2.Tabelle: 1.Tabelle_id) erstellt werden.
+
+		rails generate scaffold Address street:string number:integer client:references
+		rails generate scaffold Address street:string number:integer client_id:integer:index 
+		rails g migration AddReferencesToTasks visitor:references
+
 
 		Varaussetzungen:
 			a. ForeignKey muss in der abhängigen Tabelle vorhanden sein
