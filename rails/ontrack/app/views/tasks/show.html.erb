@@ -23,7 +23,12 @@
 
 <p>
   <strong>Project:</strong>
-  <%= @task.project_id %>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Taskverwalter:</strong>
+  <%= @visitor.name %>
 </p>
 
 <%= link_to 'Edit', edit_project_task_path(@task.project_id, @task.id), class: "button" %>

@@ -1,5 +1,6 @@
 class Visitor < ActiveRecord::Base
   has_secure_password
+  has_many :tasks, dependent: :destroy
 
   validates :name,
   					presence: true
@@ -12,5 +13,6 @@ class Visitor < ActiveRecord::Base
 		visitor = Visitor.find_by(:username => username)
 		visitor && visitor.authenticate(password)
 	end
+
 
 end

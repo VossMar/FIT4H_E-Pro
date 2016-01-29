@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
 	before_action :set_vis, only: [:show, :edit, :update, :destroy]
 	before_action :require_signin, except: [:new, :create]
-	before_action :require_correct_vis, only: [:update, :edit, :destroy]
+	before_action :require_correct_vis_or_admin, only: [:update, :edit, :destroy]
 
 	def index
 		@visitors = Visitor.all
@@ -53,9 +53,9 @@ class VisitorsController < ApplicationController
 			@visitor = Visitor.find(params[:id])
 		end
 
-		def require_correct_vis
+		def require_correct_vis_or_admin
 			@visitor = Visitor.find(params[:id])
-			unless @visitor == current_vis
+			unless @visitor == current_vis || current_vis.admin?
 					redirect_to root_url, alert:"Keine Berechtigung!"			
 			end
 		end

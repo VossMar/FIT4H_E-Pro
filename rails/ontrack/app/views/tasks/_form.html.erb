@@ -27,6 +27,10 @@
     <%= f.label :end_date %><br>
     <%= f.datetime_select :end_date %>
   </div>
+  <div class="field">
+    <%= f.label :visitor_id, "Verwaltung von User:" %><br>
+    <%= f.collection_select(:visitor_id, Visitor.all, :id, :name) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

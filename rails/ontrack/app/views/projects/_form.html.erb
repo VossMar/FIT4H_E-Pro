@@ -9,6 +9,8 @@
 	<%= p.label :start_date %>
 	<%= p.datetime_select :start_date %>
 
+	<%= p.hidden_field :creator_id, :value => current_vis.id %>
+
 	<%= p.submit "Übernehmen", class: "button" %>
 
 <% end %>

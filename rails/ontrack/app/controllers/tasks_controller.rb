@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_project
+  before_action :set_vis, only: [:show]
   before_action :require_signin
-  before_action :require_admin, except: [:index, :show]
+  before_action :require_admin_tleigen, except: [:index, :show]
 
 
   def index
@@ -66,9 +67,13 @@ class TasksController < ApplicationController
       @project = Project.find(params[:project_id])
     end
 
+    def set_vis
+      @visitor = Visitor.find(@task.visitor_id)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :start_date, :end_date, :project_id)
+      params.require(:task).permit(:title, :description, :start_date, :end_date, :project_id, :visitor_id)
     end
 end
 

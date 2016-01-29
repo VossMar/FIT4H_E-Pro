@@ -5,12 +5,14 @@
 				<th>Was</th>
 				<th>Beschreibung</th>
 				<th>Wann</th>
+				<th>Ersteller</th>
 				<th></th>
 		</tr>
 		<tr>
 				<td><%= @project.title %></td>
 				<td><%= @project.description %></td>
 				<td><%= @project.start_date %></td>
+				<td><%= @project.cre_name %></td>
 				<td>
 					<%= link_to "Tasks anzeigen", project_tasks_path(@project.id), class: "button" %>
 					<%= link_to "Bearbeiten", edit_project_path(@project.id), class: "button" %>

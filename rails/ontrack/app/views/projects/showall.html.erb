@@ -5,6 +5,7 @@
 			<th>Was</th>
 			<th>Beschreibung</th>
 			<th>Wann</th>
+			<th>Ersteller</th>
 			<th></th>
 		</tr>
 		<% @projects.each do |a| %>
@@ -12,6 +13,7 @@
 			<td><%= a.title %></td>
 			<td><%= a.description %></td>
 			<td><%= a.start_date %></td>
+			<td><%= a.cre_name %></td>
 			<td>
 				<%= link_to "Anzeigen", project_path(a.id), class: "button" %>
 				<%= link_to "Bearbeiten", edit_project_path(a.id), class: "button" %>

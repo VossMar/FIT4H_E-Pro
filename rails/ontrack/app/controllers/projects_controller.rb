@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
-	 before_action :require_admin, except: [:index, :show, :showall]
+	 before_action :set_project, only: [:show, :edit, :update, :destroy]
+	 before_action :require_admin_tl, only: [:new, :save]
+	 before_action :require_admin_tleigen, only: [:edit, :update, :destroy]
 	
 	def index
 		@projects = Project.upcoming
@@ -12,7 +14,6 @@ class ProjectsController < ApplicationController
 
 
 	def show
-		@project = Project.find(params[:id])
 	end
 
 
@@ -32,12 +33,10 @@ class ProjectsController < ApplicationController
 
 
 	def edit
-		@project = Project.find(params[:id])
 	end
 
 
 	def update
-		@project = Project.find(params[:id])
 		if @project.update(project_params)
 			redirect_to projects_path
 		else
@@ -47,7 +46,6 @@ class ProjectsController < ApplicationController
 
 
 	def destroy
-		@project = Project.find(params[:id])
 		@project.destroy
 		redirect_to projects_path
 	end
@@ -55,7 +53,11 @@ class ProjectsController < ApplicationController
 
 	private
 		def project_params
-			params.require(:project).permit(:title, :description, :start_date)
+			params.require(:project).permit(:title, :description, :start_date, :creator_id)
 		end
+
+		def set_project
+      		@project = Project.find(params[:id])
+    	end
 
 end
