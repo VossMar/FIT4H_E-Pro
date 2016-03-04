@@ -100,7 +100,7 @@ Rails-Dokumentation
 			#im Ordner db/migrate wird eine migration-Datei angelegt, die die Befehle zum erstellen einer Tabelle in der Datenbank erhält.
 
 		rails g migration Add<Bla>To<Tabelle> spalte:typ
-			#im db/migration-Ordner wird eine Datei erstellt, die bei einer ausführung von rake sb:migrate bewirkt, dass die gewünschte Spalte der Tabelle hinzugefügt wird.
+			#im db/migration-Ordner wird eine Datei erstellt, die bei einer ausführung von rake db:migrate bewirkt, dass die gewünschte Spalte der Tabelle hinzugefügt wird.
 
 		rails g resource <event> spalte:typ
 			#erstellt einen controller & co.

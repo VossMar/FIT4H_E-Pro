@@ -25,9 +25,5 @@ class Movie < ActiveRecord::Base
 	def dur?
 		self.duration.blank?
 	end
-
-	def self.upcoming
-		where("release <= ?" , Time.now).order("release")
-	end
-
+	
 end
