@@ -11,7 +11,7 @@ Rails-Dokumentation
 7.	Formular
 8.	Model Attribute
 9.	Partential (Ausgelagerte Datein)
-10. 	Validations
+10. Validations
 11.	Assoziations
 12.	Authentifizierung
 
@@ -357,6 +357,24 @@ Rails-Dokumentation
 			e = event.find(r.event_id)
 			r.event 					#zeigt den Event zur Regestration
 			e.regestrations 	#zeigt die Registrierungen des Event an
+
+	M zu N Beziehungen.
+		Es ist möglich in Rails eine Verbindung zwischen zwei Tabellen herzustellen, die nicht mit einem Foreign-Key verbunden sind.
+		Dazu ist allerdings eine Zwiscentabelle nötig.
+		Bsp.:
+			Die Tabelle events ist mit der tabelle users über die Tabelle links verknüpft.
+			class Like < ActiveRecord::Base
+				belongs_to :event
+				belongs_to :user
+			class User < ActiveRecord::Base
+				has_many :likes, dependent: :destroy
+				has_many :liked_events, through: :likes, source: :event
+			class Event < ActiveRecord::Base
+				has_many :likes, dependent: :destroy
+				has_many :likers, through: :likes, source: :user
+			# Zwischen der Tabelle Likes und der Tabelle events gibt es eine n zu 1 Beziehung; d.h. die Tabelle likes enthält eine event_id, die auf einen datensatz der Tabelle events verweist.
+			# Da es eine ebensolche verknüpfung zwischen der Tabelle likes und users gibt, ist es möglich die Tabelle users und events über (through) die Tabelle likes zu verbinden.
+			# Es ist möglich einer Beziehung eine Bezeichnung zu geben, die nicht dem Tabellennamen entspricht. Dann ist es jedoch notwendig mit source: anzugeben, auf welche Beziehung sich die Bezeichnung bezieht.
 
 
 

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :projects
+  
+  get 'login' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
+
+  resources :sessions
+  resources :users
+  resources :projects do
+    resources :tasks
+  end
 
   root 'projects#index'
   # The priority is based upon order of creation: first created -> highest priority.

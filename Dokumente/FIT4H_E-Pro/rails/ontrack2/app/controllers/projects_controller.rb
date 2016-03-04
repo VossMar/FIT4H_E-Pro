@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
 	before_action :find_project, only: [:show, :edit, :update, :destroy]
+	before_action :require_login, except: [:index, :show]
 	
 
 
@@ -18,7 +19,9 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-		if @project = Project.create(per_par)
+		@project = Project.new(per_par)
+		if @project.save
+			flash[:notice] = "Projekt erfolgreich angelegt!"
 			redirect_to root_path
 		else
 			render 'new'
@@ -31,6 +34,7 @@ class ProjectsController < ApplicationController
 
 	def update
 		if 	@project.update(per_par)
+			flash[:notice] = "Projekt erfolgreich bearbeitet!"
 			redirect_to root_path
 		else
 			render 'edit'
@@ -39,7 +43,9 @@ class ProjectsController < ApplicationController
 
 
 	def destroy
-		
+		@project.destroy
+		flash[:notice] = "Projekt erfolgreich gelöscht!"
+		redirect_to root_path
 	end
 
 private

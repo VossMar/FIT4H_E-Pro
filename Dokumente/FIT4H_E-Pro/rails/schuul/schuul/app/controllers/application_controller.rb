@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   	end
   end
   helper_method :require_signin
+
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
+  helper_method :set_event
+  
 end

@@ -12,6 +12,32 @@
 </div>
 
 <div class="panel">
+<% if @likers.any? %>
+	<div class="row">
+		<div class="medium-2 columns">
+			Likers
+		</div>
+		<div class="medium-10 columns">
+			<ul>
+			<% @likers.each do |liker| %>
+				<li><%= link_to liker.name, user_path(liker.id) %></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>
+
+<% if current_user %>
+	<% if @current_like %>
+		<%= link_to "<i class='fi-dislike icon-blue'></i>".html_safe, event_like_path(@event.id, @current_like.id), :method=> :delete %>
+	<% else %>
+		<%= link_to "<i class='fi-like icon-blue'></i>".html_safe, event_likes_path(@event.id), :method=> :post %>
+	<% end %>
+			
+<% end %>
+</div>
+
+<div class="panel">
 	<div class="row">
 		<div class="medium-2 columns">
 			Wann
@@ -47,6 +73,7 @@
 			<%= @event.capacity %>
 		</div>
 	</div>
+
 
 	<div class="row">
 		<div class="medium-2 columns"></div>

@@ -8,6 +8,8 @@
 	<%= @project.start_date %>
 </fieldset>
 
+<%= link_to "Aufgaben für \"#{@project.title}\"", project_tasks_path(@project.id) %><br>
+
 <%= link_to "zurück", root_path %>
 
 

@@ -8,6 +8,20 @@
 </head>
 <body>
 
+<% if flash.present? %>
+	<% flash.each do |key,value| %>
+		<%= content_tag( :div, value, class: "#{key}") %>
+	<% end %>
+<% end %>
+
+<div style="float:right">
+<% if current_user %>
+	<%= current_user.name %> | <%= link_to "Logout", logout_path %>
+<% end %>
+</div>
+
+
+
 <%= yield %>
 
 </body>
