@@ -7,10 +7,10 @@
 
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.image_url %></td>
+        <td><%= image_tag(product.image_url, size: '100') %></td>
         <td>
           <ul>
-            <li><%= product.title %></li>
+            <li><b><%= product.title %></b></li>
             <li><%= product.description %></li>
           </ul>
         </td>
