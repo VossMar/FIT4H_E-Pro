@@ -13,9 +13,9 @@ class Event < ActiveRecord::Base
 						numericality: { only_integer: true, greater_than: 0 }
 
 	validates_format_of :image_file, 
-											:with => %r{\.(gif\z|jpg\z|png\z)}i, 
-											:message => "endung falsch. Nur gif, jpg, png zulässig!", 
-											allow_blank: true
+									:with => %r{\.(gif\z|jpg\z|png\z)}i, 
+									:message => "endung falsch. Nur gif, jpg, png zulässig!", 
+									allow_blank: true
 							
 
 	def free?

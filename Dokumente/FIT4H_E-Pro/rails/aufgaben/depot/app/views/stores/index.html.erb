@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Book Catualoge</h1>
+
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td ><%= image_tag(product.image_url, height: '150', width: '150') %></div></td>
+              <td>
+                <h3><%= product.title %></h3>
+                <%= product.description %>
+                <br>
+                <p><%= product.price %></p>  
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+
+
+
+
+
