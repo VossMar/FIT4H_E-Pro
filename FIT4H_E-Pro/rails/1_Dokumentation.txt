@@ -1,0 +1,431 @@
+Rails-Dokumentation
+
+1.	Basis
+2.	BasisRequestVerarbeitung
+3.	RailsConsolenBefehle
+4.	Datenbank
+5.	Viewhelper
+6.	Konfiguration
+	6.1 	Routing-Konfiguration
+	6.2 	Datum-Konfiguration
+7.	Formular
+8.	Model Attribute
+9.	Partential (Ausgelagerte Datein)
+10. Validations
+11.	Assoziations
+12.	Authentifizierung
+
+
+
+
+
+1.	Basis
+
+
+	Neues Projekt anlegen
+		cd <projektverzeichnis>
+		rails new <projektname>
+			-m https://raw.github.com/RailsApps/rails-composer/master/composer.rb (+ bundle install)
+			#startet eine Auto-Installation mit mehreren Optionsmöglichkeiten und eingebundener foundation)
+		cd <projektname>
+
+	Server starten:
+		rails s 	/ rails server
+
+	App anschauen: (Browser)
+		localhost:300
+
+
+	Ordnerstruktur:
+		app
+			#hier liegen die entscheidenden Dateien
+			#Unterordner nach dem MVC-Prinzip
+				(ModelViewController: die Datenhaltung ist von der Logik und der Darstellungsebene möglichst strikt zu trennen)
+			model
+				#Klassen für die Tabellen
+			controllerst
+				#Klassen für die Logik und Abwicklung eines Requests
+			views
+				#Unterordner mit den Dateien der Darstellung
+
+
+
+
+
+2.	BasisRequestVerarbeitung
+
+
+	Aufruf im webbrowser:
+		http://localhost:300/events
+		#Fehlermeldung Routing-Error wird erzeugt (er weiß nicht, wo er hin soll)
+
+	Was geschieht?
+		Der Server bekommt eine Get-Anfrage mit einer Pfadangabe: events
+
+	1. Server schaut in der config/routes.rb ob dieser Pfad existiert und wie dier Verarbeitung weitergeht.
+		deshalb einfügen:
+			get "events" => "events#index"
+
+	2. Server wird zu einem Controller mit dem Namen EventsController geschickt.
+
+	3. Dort muss die Action index vorhanden sein
+
+	4. Der Server arbeitet die Befehle in der Index Action ab und gibt die Informationen an die View-Ebene weiter.
+		Dazu muss es einen Unterordner im app/views-Ordner geben, der genauso heißt, wie der Controller
+		und es muss eine Datei geben, die genauso heißt wie die Action.
+	Die Endung erb der Html-Datei sorgt dafür, dass der Ruby-Parser nach Ruby-Code sucht und diesen ersetzt bevor der Server den Response zum Browser sendet.
+	Der Ruby-Parser sucht dabei nach dem Tag: <%= =>
+	(<%= Time.now %>)
+	(das =-Zeichen im HTML-Text bei Aufruf eines Ruby Codes sthet für ein "echo")
+
+
+
+
+
+3.	RailsConsolenBefehle
+
+
+	Auf der Bash des Betriebssystems können folgende Befehle ausgeführt werden:
+
+	rails new <appname>
+		#erstellt ein neues Projekt
+
+	rails generate
+		rails g controller <events>
+			#legt einen Controller, d.h. eine Datei mit dem Namen events_controller.rb im Verzeichnis app/controlers an, mit einer Klasse mit dem Namen Eventcontroller
+			#zusätzlich wird im app/view-Verzeichnis ein verzeichnis events angelegt.
+
+		rails g model <event> name:string location:string price:decimal
+			#im Projekt wird eine Klasse Event angelegt, in der Datei app/models/event.rb
+			#im Ordner db/migrate wird eine migration-Datei angelegt, die die Befehle zum erstellen einer Tabelle in der Datenbank erhält.
+
+		rails g migration Add<Bla>To<Tabelle> spalte:typ
+			#im db/migration-Ordner wird eine Datei erstellt, die bei einer ausführung von rake db:migrate bewirkt, dass die gewünschte Spalte der Tabelle hinzugefügt wird.
+
+		rails g resource <event> spalte:typ
+			#erstellt einen controller & co.
+			#erstellt ein leeres Model & co.
+
+		rails g scaffold <event> spalte:typ   # so alleine lauffähig
+			#erstellt einen controller & co. inkl. view-Datein
+			#erstellt assets
+			#erstellt helper
+			#erstellt ein leeres Model & co.
+			#erstellt migrations
+
+	rails destroy
+		rails d controller <events>
+			#löscht die Controller-Datei und das Verzeichnis und alle weiteren vorher angelegten Datein
+
+	rails server
+		rails s
+			#startet einen Webserver, der auf dem Port 3000 lauscht
+		rails s -p3001
+			#Portänderung
+		rails s -b <ip>
+			#Bindung des Servers an eine IP(vorzusweise sie eigene). Aufrufbar unter <ip>:<port>
+
+
+
+
+
+4.	Datenbank
+
+	1. Anlegen einer Tabelle und Klasse
+	a.
+		rails generate model <event> name:string location:string price:decimal
+			#im Projekt wird eine Klasse Event angelegt, in der Datei app/models/event.rb
+			#im Ordner db/migrate wird eine migration-Datei angelegt, die die Befehle zum erstellen einer Tabelle in der Datenbank erhält.
+			Die sogenannte Migration-Datei im verzeichnis db/migrate kann verändert werden, bevor der Befehl rake db:migrate ausgeführt wird. Danach sind keine Änderungen an der Datei erlaubt.
+			Um einen Default-wert für zb. den Preis zu setzten, trägt man vor der Migration in der erstellten migration-Datei hinter der "<spalte>, default: 100" ein.
+	b.
+		Damit die Tabelle <events> in der Datenbank tatsächlich erstellt wird muss noch der Befehl:
+		rake db:migrate
+		auseführt werden.
+		Nach dem Durchführen sind die Daten der neuen Tabelle in der Datei: db/schema.rb einsehbar(Speicherort für Tabellen).
+
+	2. Anlegen und Speichern eines Datensatzes
+	a.
+		Event.new(name: "blub",...)
+	b.
+		e.save
+	Alternativ (beides gleichzeitig)
+		Event.create(name: "blub",...)
+		Event.create([{name: "blub",...},{name: "blub2",...},{name: "blub3",...}])
+
+	BEFEHLE
+	Suchen und finden
+		Event.find(1)
+			#sucht einen Datensatz, dessen ID bekannt ist
+		Event.find_by(name: "blub")
+			#sicht nach Spalteninhalt
+		Datensatz verändern:
+			e = Event.find(1)
+			e.update(name: "lassy")
+		Datensatz löschen
+			e.destroy
+
+
+	Hilfen
+	In der seeds.rb können Konsolenbefehle eingetragen werden, die bei bei Einbeziehung der Datei automatisch ausgeführt werden.
+	Ausführung:
+		rake db:seed 			-	führt die Befehle in der Datei aus
+		rake db:setup 		-	Löscht die Tabellen und erstellt diese neu mit Einbeziehung der seeds.rb
+
+
+
+
+5.	Viewhelper
+
+
+	Ein Rails-Prinzip ist es, auf der Darstellungsebene möglichst wenig Ruby-Code zu verwenden.
+	Dafür stellt Rails den View-Helper als Instrument zur Verfügung.
+	Es gibt einige Standardhelper, z.B.: 
+																				truncate						-	schneidet einen String ab
+																				content_tag 				-	erzeugt einen HTML-Tag
+																				number_to_currency	-	formatiert eine Zahl in Währung
+	Es gibt auch die Möglichkeit eigene Helper zu scheiben.
+	Bsp:
+		a. Aufruf im view
+			<td><%= format_price(event) %></td>
+		b. Definition im app/helpers/application_helper.rb
+			def format_price(event)
+				....
+			end
+	LINK_TO
+	Die Verlinkung wird in Rails über den link_to -Helper realisiert.
+		link_to "Alle anzeigen", eventes_path
+			#produziert den Html-Code <a href="/events">Alle anzeigen</a>
+
+
+
+
+
+6.	Konfiguration
+
+	6.1 	Routing-Konfiguration
+		
+
+		Das Routing wird von Rails mit der Datei routes.rb im Verzeichnis config geregelt.
+
+		Es ist möglich jeden einzelnen Pfad zu benennen.
+			get 'eventes/:id' => 'eventes#show'
+			#Wenn es einen Browseraufruf: "server/eventes/5" gibt, dann gehe in den eventes-Controller und doert in die show-action.
+
+		Wenn man dieses Vorgehen wählt, muss man aber jede einzelne route angeben.
+		Komfortabler ist es Rails eine Resource bilden zu lassen. Dies geschieht mit dem Befehl:
+			resources :eventes
+
+		Nun stehen alle Standartaktionen dieses Controllers zur Verfügung.
+
+		Im Hintergrund erstellt Rails nun Methoden, die eine Pfadangabe generieren.
+			Bsp.: event_path(5) 
+				#erstellt den Html-Code:	<a href="/events/5"></a>
+				
+		Mit dem Consolenbefehl:
+				rake routes
+			kann man sich alle Routen anzeigen lassen.
+
+
+
+
+	6.2 	Datum-Konfiguration
+
+
+		Der Server orientiert sich beim Starten an einem amerikanischen Datums-und Währungsstandard.
+		Möchte ich alternative Standards definieren, kann ich das mit Dateien im config/initializers-Ordner tun.
+		Diese Datein werden beim Start des Servers geladen.
+
+		Beispiel: Deutsches Datumsformat
+			config/initializers/time_formats.rb
+					Time::DATE_FORMATS[:default] = "%d. %b. %Y"
+
+
+
+
+
+7.	Formular
+
+
+	Vorgänge:
+		1. Neuanlegen eines Events
+			# Aufruf der new-Action beim Formular öffnen
+			# create-Action beim speichern des Formulars
+			# Routing: 
+				new_event_path - Methode
+				event_path, method: post
+
+		2. Editieren eines Items
+			# Aufruf der edit-Action
+				edit_event_path(id)
+			# update Action: Speichern der Änderungen
+
+		3. View-Bereich
+			# Im Ordner views, Unterordner eventes gibt es eine Datei "new.html.erb" und "edit.html.erb", die ein Partitial aufrufen, in dem das eigentliche Formular definiert ist, damit dieses nur an einer Stelle liegt.
+
+		4. Form-Helper
+			# form for 	-	Anlegen eines Formulars
+					<%= form_for @event do |f| %> .... <% end %>
+			# text_field - einfaches Textfeld (1 Zeile)
+					<%= f.text_field :name %>
+			...
+
+		5. Controller
+			def create
+				@event = Event.new(event_params)
+			# event_params ist eine Methode im gleichen Controller.
+			# Diese Methode enthält alle erlaubten Parameter. Dies ist ein Rails-Sicherheitsfeatuer.
+					def event_params
+						params.require(:event).permit(:name, :description, :location, :price, :start_at)
+					end
+				
+
+
+
+8.	Model Attribute
+	Die im Model angelegten Klassenmethoden, können im Controller verwendet werden.
+	Bsp.: 
+	Die Attribute Vorname und Nachname können mit "name" zusammen als string aufgerufen werden.
+		def name
+			"#{vorname} #{nachname}"
+		end	
+	Mit der Verwendung von "upcoming" werden die Daten von start_at in der in "self" übermittelten Methode gesucht, welche noch nicht in der Vergangenheit liegen.
+		def self.upcoming
+			where("start_at >= ?", Time.now).order("start_at")
+		end
+
+
+
+
+
+9.	Partential (Ausgelagerte Datein)
+
+
+	Es ist ein Ziel in Rails den Umfang von Datein soweit zu minimieren, dass man möglichst auf einer Bildschirmseite alle wesentlichen Informationen hat.
+	Ein weiteres Ziel ist es keinen Code doppelt zu schreiben - DRY
+
+	In den views erfüllen Partitials, also Auslagerungsdatein diese Funktion.
+
+	Da das formular dür edit und new weitestgehend identisch ist, wird der Code in eine eigene Datei gelagert.
+
+	new.html.erb
+		<%= render "form" %>
+			# Der Rails Interpreter sucht auf der gleichen verzeichnisebene nach einer Datei mit dem Namen "_form.html.erb"
+
+
+
+
+
+10. 	Validations
+
+
+	Unter Validations versteht man in Rails, die Überprüfung eines Formularfeldes auf:
+		- Anwesenheit
+		- Richtigkeit des Eintrags(Email, Datum)
+
+	Eine Validation wird im Model definiert.
+	Bsp.:
+			models/event.rb
+				validates :name, presence: true
+			#sobald ein Speichervorgang in der Datenbank initiiert wird, wird überprüft, ob für die Spalte "Name" ein wert gesetzt wird.
+			Falls keiner Vorhanden ist, wird der Speicherforgang abgebrochen und ein Fehler zurückgegeben.
+
+
+
+
+
+11.	Assoziations
+
+
+	Verknüpfung von Tabellen:
+		Tabellen können über eine Verknüpfung von PrimaryKey (1.Tabelle) zum ForeignKey (2.Tabelle: 1.Tabelle_id) erstellt werden.
+
+		rails generate scaffold Address street:string number:integer client:references
+		rails generate scaffold Address street:string number:integer client_id:integer:index 
+		rails g migration AddReferencesToTasks visitor:references
+
+
+		Varaussetzungen:
+			a. ForeignKey muss in der abhängigen Tabelle vorhanden sein
+			b. models/1.Tabelle.rb 		(event.rb)
+				has many :2.Tabelles 		(regestrations)
+			c. models/2.Tabelle.rb 		(regestration.rb)
+				belongs_to :1.Tabelle 	(event)
+
+		Wenn es diese Verknüpfungen gibt, bildet Rails die zusätzlichen Methoden:
+			r = Regestration.first
+			e = event.find(r.event_id)
+			r.event 					#zeigt den Event zur Regestration
+			e.regestrations 	#zeigt die Registrierungen des Event an
+
+	M zu N Beziehungen.
+		Es ist möglich in Rails eine Verbindung zwischen zwei Tabellen herzustellen, die nicht mit einem Foreign-Key verbunden sind.
+		Dazu ist allerdings eine Zwiscentabelle nötig.
+		Bsp.:
+			Die Tabelle events ist mit der tabelle users über die Tabelle links verknüpft.
+			class Like < ActiveRecord::Base
+				belongs_to :event
+				belongs_to :user
+			class User < ActiveRecord::Base
+				has_many :likes, dependent: :destroy
+				has_many :liked_events, through: :likes, source: :event
+			class Event < ActiveRecord::Base
+				has_many :likes, dependent: :destroy
+				has_many :likers, through: :likes, source: :user
+			# Zwischen der Tabelle Likes und der Tabelle events gibt es eine n zu 1 Beziehung; d.h. die Tabelle likes enthält eine event_id, die auf einen datensatz der Tabelle events verweist.
+			# Da es eine ebensolche verknüpfung zwischen der Tabelle likes und users gibt, ist es möglich die Tabelle users und events über (through) die Tabelle likes zu verbinden.
+			# Es ist möglich einer Beziehung eine Bezeichnung zu geben, die nicht dem Tabellennamen entspricht. Dann ist es jedoch notwendig mit source: anzugeben, auf welche Beziehung sich die Bezeichnung bezieht.
+
+
+
+
+
+12.	Authentifizierung
+
+
+	Rails bringt die Vorraussetzungen für eine Authentifizierung mit.
+
+	Anlegen eines Users:
+		1. Aktivieren sie in der Datei 'Gemfile' das Gem 'bcrypt', in dem sie das Kommentarzeichen entfernen.
+
+		2. Ein zentrales Attribut in dem Model ist 'password'. Dieses kann beim anlegen berücksichtigt werden, in dem man ein "rails g model user email password:digest" ausführt. In jedem Fall muss in der Migration für das Feld attribut die Zeile "t.string :pssword_digest" stehen. Dieser Eintrag sorgt dafür, dass in Kombination mit 'has_secure_password' der Passworteintrag in der Tabelle verschlüsselt wird.
+
+		3. Im Model, das für die Authentifizierung verwendet wird(Bsp. User), ist die Angabe 'has_secure_password' in der ersten Zeile nötig. Damit stehen in diesem Model verschiedene Methoden zur Verschlüsselug und Authentifizierung zur verfügung (Wird automatisch mit der Erstellung des Models mit der "digest-Angabe" eingetragen).
+
+		4. Das Formular zum Anlegen eines Users enthält zwei Textfelder für das Passwort: 
+			<%= f.password_field :password %>
+			<%= f.password_field :password_confirmation %>
+
+	Authentifizierung:
+		Neben dem Model für die Accounts wird ein Controller 'sessions' (rails g controller sessions new), in dem die Authentifizierung statt findet. Der Controller hat eine Action für des Login-Formular "new", eine create-Action für das Prüfen der Login-Daten und eine destroy-Action für das Ausloggen. 
+		Für die Authentifizierung wird in dessen Model eine Methode von bcrypt verwendet (Bsp.: user.authenticate(password).
+			Bsp.:
+			Wir haben eine eigene Klassenmethode von User mit dem Namen authenticate geschrieben, die wir im Controller aufrufen.
+				"def self.authenticate(email, password)
+					user = User.find_by(:email => email)
+					user && user.authenticate(password)
+				end"
+			Bei eine Fehlschlagen der Authentifizierung wird in das Login-formular zurückgeleitet. Bei einem erfolgreichen Authentifizieren wird eine session-Variable angelegt.
+				'session[:user_id] = user.id'
+			Diese Sessionvariable wird bei jedem Aufruf im application_controller überprüft:
+				def current_user
+					@current_user = User.find(session:[:user_id]) if session[:user_id]
+				end
+			Beim Logouteines Users wird diese Session zerstört:
+				def destroy
+					session[:user_id] = nil
+				end
+
+	Überprüfung der Authentifizierung im Controlle:
+		Um den Zugriff eines Users zu beschränken kann im Controller eine Abfrage durchgeführt werden, ob der User eingeloggt ist.
+			def require_signin
+				unless current-user
+					redirect_to signin_url, alert: "Anmeldung notwentig!"
+				end
+			end
+		Wenn die Variable(Helper) current_user nicht gefüllt ist, dann bedeutet das, dass der User nicht angemeldet ist. Er wird dann zum Login-Fesnter umgeleitet.
+		Beispiel:
+		Damit nur ein eingeloggter User andere User sehen kann, aber dennoch das Anlegen eines neuen Users ohne Login möglich ist, steht im users_controller:
+			before_action :require_signin, except:[:new, :create]
+				#before_action => vor jeder weiteren Aktivität wird diese Methode ausgeführt.
+				#except: [:new, :create] => Die Actions zum Anlegen eines neuen Users (new und create) werden ausgenommen.

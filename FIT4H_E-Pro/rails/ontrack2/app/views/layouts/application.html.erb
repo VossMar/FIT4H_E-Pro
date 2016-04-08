@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ontrack2</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if flash.present? %>
+	<% flash.each do |key,value| %>
+		<%= content_tag( :div, value, class: "#{key}") %>
+	<% end %>
+<% end %>
+
+<div style="float:right">
+<% if current_user %>
+	<%= current_user.name %> | <%= link_to "Logout", logout_path %>
+<% end %>
+</div>
+
+
+
+<%= yield %>
+
+</body>
+</html>

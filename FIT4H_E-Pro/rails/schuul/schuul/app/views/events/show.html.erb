@@ -1,0 +1,86 @@
+<h1><%= @event.name %></h1>
+
+<div class="panel">
+	<div class="row">
+		<div class="medium-3 columns">
+			<%= image_for(@event) %>
+		</div>
+		<div class="medium-9 columns">
+		<%= @event.description %>
+		</div>
+	</div>
+</div>
+
+<div class="panel">
+<% if @likers.any? %>
+	<div class="row">
+		<div class="medium-2 columns">
+			Likers
+		</div>
+		<div class="medium-10 columns">
+			<ul>
+			<% @likers.each do |liker| %>
+				<li><%= link_to liker.name, user_path(liker.id) %></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>
+
+<% if current_user %>
+	<% if @current_like %>
+		<%= link_to "<i class='fi-dislike icon-blue'></i>".html_safe, event_like_path(@event.id, @current_like.id), :method=> :delete %>
+	<% else %>
+		<%= link_to "<i class='fi-like icon-blue'></i>".html_safe, event_likes_path(@event.id), :method=> :post %>
+	<% end %>
+			
+<% end %>
+</div>
+
+<div class="panel">
+	<div class="row">
+		<div class="medium-2 columns">
+			Wann
+		</div>
+		<div class="medium-10 columns">
+			<%= @event.start_at %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			Wo
+		</div>
+		<div class="medium-10 columns">
+			<%= @event.location %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			Preis
+		</div>
+		<div class="medium-10 columns">
+			<%= format_price(@event) %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			Gesamtplätze
+		</div>
+		<div class="medium-10 columns">
+			<%= @event.capacity %>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="medium-2 columns"></div>
+		<div class="medium-10 columns">
+			<%= link_to "Registrierungen", event_registrations_path(@event.id), :class => "button mid-btn" %>
+			<%= link_to "Anmelden", new_event_registration_path(@event.id), :class => "button mid-btn" %><br/>
+			<%= link_to "Back", events_path, :class => "button big-btn" %><br/>
+		</div>
+	</div>
+</div>

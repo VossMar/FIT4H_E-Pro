@@ -1,0 +1,32 @@
+<h1>Alle Projekte</h1>
+
+<hr/>
+<%= link_to "Neues Projekt anlegen", new_project_path %><br>
+<%= link_to "User anzeigen", users_path %><br>
+<%= link_to "Neu anmelden", new_user_path %><br>
+<%= link_to "login", login_path %>
+
+
+
+<table style=" width:100% ; border: 1px solid blue ;">
+	<tr>
+		<th> Titel </th>
+		<th> Beschreibung </th>
+		<th> Beginn </th>
+	</tr>
+
+<% @projects.each do |p| %>
+
+	<tr>
+		<td><%= p.title %></td>
+		<td><%= p.description %></td>
+		<td><%= p.start_date %></td>
+		<td><%= link_to "Anzeigen", project_path(p.id)  %></td>
+		<td><%= link_to "Bearbeiten", edit_project_path(p.id)  %></td>
+		<td><%= link_to "Entfernen", project_path(p.id), method: :delete, data: {confirm: "Wirklich löschen"} %></td>
+	</tr>
+
+<% end %>
+
+
+</table>
