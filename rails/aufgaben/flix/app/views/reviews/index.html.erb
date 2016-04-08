@@ -1,0 +1,18 @@
+<h1>Alle Reviews</h1>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Stars</th>
+		<th>Comment</th>
+		<th>Movie</th>
+	</tr>
+	<% @reviews.each do |review| %>
+		<tr>
+			<td><%= review.name %></td>
+			<td><%= review.stars %></td>
+			<td><%= review.comment %></td>
+		</tr>
+	<% end %>
+</table>
+<p><%= link_to "Back", movies_path, type: "button", class: "button" %></p>

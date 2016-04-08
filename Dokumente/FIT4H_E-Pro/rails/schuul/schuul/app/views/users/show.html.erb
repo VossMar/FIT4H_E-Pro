@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+	<strong>Regestrierungen:</strong>
+	<ul>
+		<% @user.registrations.each do |registration| %>
+			<li><%= registration.event.name %></li>
+		<% end %>
+	</ul>
+</p>
+<br>
+<% if @liked_events.any? %>
+<p>
+	<strong>Liked Events:</strong>
+	<ul>
+		<% @liked_events.each do |liev| %>
+			<li><%= link_to liev.name, event_path(liev.id) %></li>
+		<% end %>
+	</ul>
+</p>
+<% end -%>
+
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

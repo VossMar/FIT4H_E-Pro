@@ -1,0 +1,22 @@
+<h1>Neu registrieren<h1>
+
+	<%= form_for([@event, @registration]) do |f| %>
+
+	<%= render "shared/errormsg", obj_starwars: @registration %>
+
+
+		<div class="row">
+			<div class="medium-2 columns">
+					<%= f.label :how_heard %>
+			</div>
+			<div class="medium-10 columns">
+					<%= f.select :how_heard, Registration::HOW_HEARD_OPTIONS, prompt: "Bitte auswählen" %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="medium-2 columns"><%= f.submit "Registrieren", class: "button" %></div>
+			<div class="medium-10 columns"></div>
+		</div>
+
+	<% end %>

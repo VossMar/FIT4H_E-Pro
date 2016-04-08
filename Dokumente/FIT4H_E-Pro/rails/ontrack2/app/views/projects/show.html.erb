@@ -1,0 +1,15 @@
+<fieldset>
+	<legend><%= @project.title %></legend>
+
+	<u>Beschreibung: </u></br>
+	<%= @project.description %></br></br>
+
+	<u>Beginn: </u></br>
+	<%= @project.start_date %>
+</fieldset>
+
+<%= link_to "Aufgaben für \"#{@project.title}\"", project_tasks_path(@project.id) %><br>
+
+<%= link_to "zurück", root_path %>
+
+

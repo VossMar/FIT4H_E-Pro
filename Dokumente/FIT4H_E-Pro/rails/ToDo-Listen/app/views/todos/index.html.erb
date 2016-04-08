@@ -1,0 +1,24 @@
+<h1>Noch anstehende Aufgaben</h1>
+<p>
+<table width='100%' border="1px">
+	<tr>
+		<td></td>
+		<th>Enddatum</th>
+		<th>Priorität</th>
+		<th>Extras</th>
+		<td></td>
+	</tr>
+<% @todos.each do |td| %>
+	<tr>
+		<th><%= td.title %></th>
+		<td><%= td.end_date %></td>
+		<td><%= td.prio %></td>
+		<td><%= td.extention %></td>
+		<td><%= link_to "Anzeigen", todo_path(td) %> <%= link_to "Bearbeiten", edit_todo_path(td) %> <%= link_to "Löschen", todo_path(td), method: :delete %></td>
+	</tr>
+<% end %>
+
+</table>
+</p>
+</br>
+<%= link_to "Neue Aufgabe", new_todo_path %>

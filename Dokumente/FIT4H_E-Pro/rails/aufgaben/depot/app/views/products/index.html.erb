@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Products</h1>
+
+<table>
+  <tbody>
+
+    <% @products.each do |product| %>
+      <tr class="<%= cycle('odd','even')%>">
+        <td><%= image_tag(product.image_url, size: '100') %></td>
+        <td>
+          <ul>
+            <li><b><%= product.title %></b></li>
+            <li><%= product.description %></li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li><%= link_to 'Show', product %></li>
+            <li><%= link_to 'Edit', edit_product_path(product) %></li>
+            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
